@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Mind RAG — AI Powered Document Intelligence</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation & Document Management -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-brain"></i>
+                </div>
+                <div class="brand-text">
+                    <h2>PDF Mind RAG</h2>
+                    <span>GenAI Document Assistant</span>
+                </div>
+            </div>
+
+            <!-- Upload Area -->
+            <div class="sidebar-section">
+                <h3><i class="fa-solid fa-cloud-arrow-up"></i> Upload Document</h3>
+                <div class="upload-box" id="drop-zone">
+                    <input type="file" id="pdf-input" accept=".pdf" hidden>
+                    <i class="fa-solid fa-file-pdf pdf-icon"></i>
+                    <p class="upload-title">Drag & Drop PDF here</p>
+                    <p class="upload-subtitle">or click to browse files</p>
+                    <button class="btn btn-secondary btn-sm" id="browse-btn">
+                        <i class="fa-solid fa-folder-open"></i> Browse PDF
+                    </button>
+                </div>
+                <div id="upload-progress" class="upload-progress hidden">
+                    <div class="spinner"></div>
+                    <span id="upload-status-text">Indexing document...</span>
+                </div>
+            </div>
+
+            <!-- Indexed Files List -->
+            <div class="sidebar-section">
+                <h3><i class="fa-solid fa-file-lines"></i> Indexed Documents</h3>
+                <ul id="document-list" class="document-list">
+                    <li class="empty-docs">No PDFs uploaded yet.</li>
+                </ul>
+            </div>
+
+            <!-- System Metrics -->
+            <div class="sidebar-section metrics-section">
+                <h3><i class="fa-solid fa-chart-pie"></i> System Status</h3>
+                <div class="metric-card">
+                    <div class="metric">
+                        <span class="metric-label">Vector Chunks</span>
+                        <span class="metric-value" id="vector-count">0</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-label">LLM Model</span>
+                        <span class="metric-value small" id="llm-model-name">Loading...</span>
+                    </div>
+                </div>
+                <button id="reset-btn" class="btn btn-danger btn-block">
+                    <i class="fa-solid fa-trash-can"></i> Clear Knowledge Base
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Chat Container -->
+        <main class="chat-container">
+            <!-- Header Bar -->
+            <header class="chat-header">
+                <div class="header-info">
+                    <h2><i class="fa-solid fa-comments"></i> Interactive RAG Chat</h2>
+                    <p>Ask precise questions about your uploaded PDF documents</p>
+                </div>
+                <div class="header-badges">
+                    <span class="badge badge-accent"><i class="fa-solid fa-bolt"></i> OpenRouter LLM</span>
+                    <span class="badge badge-success"><i class="fa-solid fa-database"></i> ChromaDB Vector Store</span>
+                </div>
+            </header>
+
+            <!-- Chat Messages Area -->
+            <div class="chat-messages" id="chat-messages">
+                <!-- Welcome Message -->
+                <div class="message message-system">
+                    <div class="avatar">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <h3>Welcome to PDF Mind RAG! 👋</h3>
+                        <p>Upload any PDF document using the left sidebar, then ask me questions about its content. I will retrieve context snippets from your file and generate accurate answers with source page numbers.</p>
+                        <div class="sample-prompts">
+                            <span class="prompt-tag" onclick="useSamplePrompt('What are the main topics discussed in this document?')">
+                                💡 What are the main topics discussed in this document?
+                            </span>
+                            <span class="prompt-tag" onclick="useSamplePrompt('Summarize the key conclusions and recommendations.')">
+                                💡 Summarize the key conclusions and recommendations.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="chat-input-area">
+                <form id="chat-form" class="chat-form">
+                    <div class="input-wrapper">
+                        <textarea id="user-input" placeholder="Ask a question about your PDF document..." rows="1" required></textarea>
+                        <button type="submit" id="send-btn" class="btn btn-primary">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
