@@ -1,27 +1,33 @@
 :root {
-    --bg-dark: #0f172a;
-    --bg-sidebar: #1e293b;
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --bg-chat: #090d16;
-    --border-color: rgba(255, 255, 255, 0.08);
+    /* Image 2 Light Pastel Glassmorphism Palette */
+    --bg-main: linear-gradient(135deg, #c7d2fe 0%, #e0e7ff 30%, #f3e8ff 65%, #ffedd5 100%);
+    --bg-sidebar: rgba(255, 255, 255, 0.45);
+    --bg-card: rgba(255, 255, 255, 0.55);
+    --bg-input: rgba(238, 242, 255, 0.7);
+    --bg-input-focus: rgba(255, 255, 255, 0.9);
     
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
-    --accent: #06b6d4;
-    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #06b6d4 100%);
+    /* Image 2 Glass Borders & Inset Glows */
+    --border-glass: rgba(255, 255, 255, 0.85);
+    --border-subtle: rgba(226, 232, 240, 0.6);
+    --glass-shadow: 0 20px 45px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.9);
     
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
+    /* Image 2 Primary Teal Gradient Accent */
+    --primary-teal: #0d9488;
+    --primary-teal-gradient: linear-gradient(135deg, #0d9488 0%, #0891b2 100%);
+    --teal-glow: 0 10px 25px -5px rgba(13, 148, 136, 0.35);
+    
+    /* High Contrast Slate Typography */
+    --text-main: #1e293b;
+    --text-muted: #475569;
     --text-dim: #64748b;
     
     --success: #10b981;
     --danger: #ef4444;
-    --warning: #f59e0b;
     
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 16px;
-    --shadow-glow: 0 8px 32px 0 rgba(99, 102, 241, 0.2);
+    --radius-sm: 14px;
+    --radius-md: 20px;
+    --radius-lg: 28px;
+    --radius-pill: 30px;
 }
 
 * {
@@ -32,7 +38,8 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-dark);
+    background: var(--bg-main);
+    background-attachment: fixed;
     color: var(--text-main);
     height: 100vh;
     overflow: hidden;
@@ -42,13 +49,19 @@ body {
     display: flex;
     height: 100vh;
     width: 100vw;
+    padding: 1.25rem;
+    gap: 1.25rem;
 }
 
-/* Sidebar Styles */
+/* Sidebar Styles - Image 2 Frosted Glass Card */
 .sidebar {
-    width: 320px;
-    background-color: var(--bg-sidebar);
-    border-right: 1px solid var(--border-color);
+    width: 340px;
+    background: var(--bg-sidebar);
+    backdrop-filter: blur(25px) saturate(190%);
+    -webkit-backdrop-filter: blur(25px) saturate(190%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
     display: flex;
     flex-direction: column;
     padding: 1.5rem;
@@ -59,36 +72,35 @@ body {
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border-color);
+    gap: 0.85rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border-subtle);
 }
 
 .brand-icon {
-    width: 44px;
-    height: 44px;
-    background: var(--accent-gradient);
+    width: 48px;
+    height: 48px;
+    background: var(--primary-teal-gradient);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     color: #fff;
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--teal-glow);
 }
 
 .brand-text h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: #0f766e;
 }
 
 .brand-text span {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-muted);
+    font-weight: 500;
 }
 
 .sidebar-section {
@@ -98,67 +110,72 @@ body {
 }
 
 .sidebar-section h3 {
-    font-size: 0.85rem;
-    font-weight: 600;
+    font-size: 0.8rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.06em;
     color: var(--text-muted);
     display: flex;
     align-items: center;
     gap: 0.5rem;
 }
 
-/* Upload Box */
+/* Upload Box - Soft Pill Input Style */
 .upload-box {
-    border: 2px dashed var(--border-color);
+    border: 2px dashed rgba(13, 148, 136, 0.35);
     border-radius: var(--radius-md);
-    padding: 1.25rem;
+    padding: 1.5rem 1rem;
     text-align: center;
-    background: rgba(15, 23, 42, 0.4);
-    transition: all 0.25s ease;
+    background: var(--bg-input);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
 .upload-box:hover, .upload-box.dragover {
-    border-color: var(--primary);
-    background: rgba(99, 102, 241, 0.08);
+    border-color: var(--primary-teal);
+    background: rgba(255, 255, 255, 0.9);
+    transform: translateY(-2px);
+    box-shadow: var(--teal-glow);
 }
 
 .pdf-icon {
-    font-size: 2.2rem;
-    color: var(--accent);
+    font-size: 2.5rem;
+    color: var(--primary-teal);
     margin-bottom: 0.5rem;
 }
 
 .upload-title {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     font-weight: 600;
     color: var(--text-main);
 }
 
 .upload-subtitle {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     color: var(--text-dim);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.85rem;
 }
 
 .upload-progress {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem;
-    background: rgba(99, 102, 241, 0.15);
-    border: 1px solid var(--primary);
+    padding: 0.85rem;
+    background: rgba(13, 148, 136, 0.1);
+    border: 1px solid rgba(13, 148, 136, 0.25);
     border-radius: var(--radius-sm);
     font-size: 0.85rem;
-    color: var(--text-main);
+    color: var(--primary-teal);
+    font-weight: 600;
 }
 
 .spinner {
-    width: 18px;
-    height: 18px;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: var(--primary);
+    width: 20px;
+    height: 20px;
+    border: 3px solid rgba(13, 148, 136, 0.2);
+    border-top-color: var(--primary-teal);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
 }
@@ -181,41 +198,45 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0.6rem 0.8rem;
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    padding: 0.7rem 0.9rem;
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--border-glass);
     border-radius: var(--radius-sm);
     font-size: 0.82rem;
+    font-weight: 500;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .document-item span {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 200px;
+    max-width: 210px;
+    color: var(--text-main);
 }
 
 .empty-docs {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-dim);
     font-style: italic;
     padding: 0.5rem 0;
 }
 
-/* Metrics & Buttons */
+/* Metrics Section */
 .metrics-section {
     margin-top: auto;
 }
 
 .metric-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.65);
+    border: 1px solid var(--border-glass);
     border-radius: var(--radius-md);
-    padding: 0.75rem;
+    padding: 0.9rem 1.1rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
+    gap: 0.65rem;
+    margin-bottom: 0.85rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
 }
 
 .metric {
@@ -225,91 +246,103 @@ body {
 }
 
 .metric-label {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: var(--text-muted);
+    font-weight: 500;
 }
 
 .metric-value {
     font-weight: 700;
-    font-size: 1rem;
-    color: var(--accent);
+    font-size: 1.1rem;
+    color: var(--primary-teal);
 }
 
 .metric-value.small {
-    font-size: 0.75rem;
-    max-width: 140px;
+    font-size: 0.78rem;
+    max-width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    color: var(--text-main);
 }
 
-/* Buttons */
+/* Buttons - Image 2 Teal Pill Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.6rem 1rem;
-    border-radius: var(--radius-sm);
-    font-size: 0.85rem;
+    padding: 0.75rem 1.4rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.92rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-primary {
-    background: var(--accent-gradient);
-    color: #fff;
-    box-shadow: var(--shadow-glow);
+    background: var(--primary-teal-gradient);
+    color: #ffffff;
+    box-shadow: var(--teal-glow);
 }
 
 .btn-primary:hover {
-    opacity: 0.92;
-    transform: translateY(-1px);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -5px rgba(13, 148, 136, 0.45);
 }
 
 .btn-secondary {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-main);
+    background: rgba(255, 255, 255, 0.75);
+    color: var(--primary-teal);
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
 }
 
 .btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: #ffffff;
+    transform: translateY(-1px);
 }
 
 .btn-danger {
-    background: rgba(239, 68, 68, 0.15);
+    background: rgba(239, 68, 68, 0.1);
     color: var(--danger);
-    border: 1px solid rgba(239, 68, 68, 0.3);
+    border: 1px solid rgba(239, 68, 68, 0.25);
 }
 
 .btn-danger:hover {
     background: var(--danger);
     color: #fff;
+    box-shadow: 0 8px 25px rgba(239, 68, 68, 0.35);
 }
 
 .btn-sm {
-    padding: 0.4rem 0.8rem;
-    font-size: 0.78rem;
+    padding: 0.45rem 0.95rem;
+    font-size: 0.8rem;
 }
 
 .btn-block {
     width: 100%;
 }
 
-/* Chat Main Area */
+/* Main Chat Area - Image 2 Glass Box */
 .chat-container {
     flex: 1;
     display: flex;
     flex-direction: column;
-    background: var(--bg-chat);
+    background: var(--bg-sidebar);
+    backdrop-filter: blur(25px) saturate(190%);
+    -webkit-backdrop-filter: blur(25px) saturate(190%);
+    border: 1px solid var(--border-glass);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--glass-shadow);
+    overflow: hidden;
 }
 
 .chat-header {
     padding: 1.25rem 2rem;
-    border-bottom: 1px solid var(--border-color);
-    background: rgba(30, 41, 59, 0.3);
+    border-bottom: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.3);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -317,37 +350,36 @@ body {
 
 .header-info h2 {
     font-family: 'Outfit', sans-serif;
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-main);
 }
 
 .header-info p {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     color: var(--text-muted);
 }
 
 .header-badges {
     display: flex;
-    gap: 0.5rem;
+    gap: 0.6rem;
 }
 
 .badge {
-    padding: 0.35rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.75rem;
-    font-weight: 500;
+    padding: 0.4rem 0.9rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--border-glass);
 }
 
 .badge-accent {
-    background: rgba(99, 102, 241, 0.15);
-    color: #818cf8;
-    border: 1px solid rgba(99, 102, 241, 0.3);
+    color: var(--primary-teal);
 }
 
 .badge-success {
-    background: rgba(16, 185, 129, 0.15);
     color: var(--success);
-    border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 /* Chat Messages */
@@ -363,7 +395,13 @@ body {
 .message {
     display: flex;
     gap: 1rem;
-    max-width: 85%;
+    max-width: 84%;
+    animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .message-user {
@@ -372,129 +410,149 @@ body {
 }
 
 .message-user .message-content {
-    background: var(--primary);
-    color: #fff;
-    border-radius: var(--radius-md) var(--radius-md) 0 var(--radius-md);
+    background: var(--primary-teal-gradient);
+    color: #ffffff;
+    border-radius: 22px 22px 4px 22px;
+    box-shadow: 0 10px 25px rgba(13, 148, 136, 0.3);
+}
+
+.message-user .message-content p {
+    color: #ffffff;
 }
 
 .message-assistant .message-content, .message-system .message-content {
-    background: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: var(--radius-md) var(--radius-md) var(--radius-md) 0;
-    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid var(--border-glass);
+    border-radius: 22px 22px 22px 4px;
+    backdrop-filter: blur(16px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .avatar {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: var(--accent-gradient);
+    background: var(--primary-teal-gradient);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #fff;
-    font-size: 1rem;
+    font-size: 1.15rem;
     flex-shrink: 0;
+    box-shadow: var(--teal-glow);
 }
 
 .message-user .avatar {
-    background: #475569;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
 }
 
 .message-content {
-    padding: 1rem 1.25rem;
-    font-size: 0.92rem;
-    line-height: 1.6;
+    padding: 1.15rem 1.5rem;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: var(--text-main);
 }
 
 .message-content h3 {
     margin-bottom: 0.5rem;
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-main);
 }
 
 .sample-prompts {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    gap: 0.6rem;
+    margin-top: 1.25rem;
 }
 
 .prompt-tag {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-color);
-    padding: 0.4rem 0.75rem;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border-glass);
+    padding: 0.55rem 1rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--primary-teal);
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.25s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .prompt-tag:hover {
-    background: rgba(99, 102, 241, 0.2);
-    border-color: var(--primary);
-    color: var(--text-main);
+    background: var(--primary-teal-gradient);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: var(--teal-glow);
 }
 
 /* Source Citation Cards */
 .sources-container {
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid var(--border-color);
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-subtle);
 }
 
 .sources-header {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--text-muted);
-    margin-bottom: 0.5rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--primary-teal);
+    margin-bottom: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
 }
 
 .source-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0.65rem;
 }
 
 .source-card {
-    background: rgba(15, 23, 42, 0.6);
-    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(13, 148, 136, 0.2);
     border-radius: var(--radius-sm);
-    padding: 0.5rem 0.75rem;
-    font-size: 0.75rem;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.78rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
 }
 
 .source-title {
-    font-weight: 600;
-    color: var(--accent);
-    margin-bottom: 0.25rem;
+    font-weight: 700;
+    color: var(--primary-teal);
+    margin-bottom: 0.3rem;
 }
 
 .source-snippet {
-    color: var(--text-dim);
-    line-height: 1.4;
+    color: var(--text-muted);
+    line-height: 1.45;
 }
 
-/* Chat Input */
+/* Chat Input Bar - Image 2 Translucent Input */
 .chat-input-area {
     padding: 1.25rem 2rem;
-    border-top: 1px solid var(--border-color);
-    background: rgba(30, 41, 59, 0.3);
+    border-top: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.3);
 }
 
 .input-wrapper {
     display: flex;
-    gap: 0.75rem;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid var(--border-color);
+    gap: 0.85rem;
+    background: var(--bg-input);
+    border: 1px solid var(--border-glass);
     border-radius: var(--radius-md);
-    padding: 0.5rem 0.75rem;
+    padding: 0.7rem 1rem;
     align-items: center;
-    transition: border-color 0.2s;
+    transition: all 0.25s ease;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
 }
 
 .input-wrapper:focus-within {
-    border-color: var(--primary);
+    border-color: var(--primary-teal);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+    background: var(--bg-input-focus);
 }
 
 #user-input {
@@ -504,16 +562,21 @@ body {
     outline: none;
     color: var(--text-main);
     font-family: inherit;
-    font-size: 0.95rem;
+    font-size: 0.96rem;
     resize: none;
     max-height: 120px;
 }
 
+#user-input::placeholder {
+    color: var(--text-dim);
+}
+
 #send-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: var(--radius-sm);
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-pill);
     padding: 0;
+    flex-shrink: 0;
 }
 
 .hidden {
