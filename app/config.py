@@ -15,7 +15,7 @@ class Settings:
     # OpenRouter API settings
     OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
     OPENROUTER_BASE_URL: str = os.getenv("OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1")
-    LLM_MODEL: str = os.getenv("LLM_MODEL", "google/gemini-2.0-flash-exp:free")
+    LLM_MODEL: str = os.getenv("LLM_MODEL", "openrouter/free")
     
     # HuggingFace API key for cloud embeddings
     HUGGINGFACE_API_KEY: str = os.getenv("HUGGINGFACE_API_KEY", os.getenv("HF_TOKEN", ""))
