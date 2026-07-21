@@ -1,0 +1,14 @@
+.git
+.gitignore
+.env
+.env.example
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+venv/
+data/
+rewrite_root.sh
+*.md
+LICENSE
